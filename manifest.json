@@ -1,0 +1,69 @@
+{
+    "manifest_version":  3,
+    "name":  "Portfolio AI Job Scanner",
+    "version":  "0.1.19",
+    "description":  "Scan supported job-board pages and send jobs to your portfolio AI dashboard.",
+    "action":  {
+                   "default_popup":  "popup.html"
+               },
+    "permissions":  [
+                        "activeTab",
+                        "scripting",
+                        "storage",
+                        "tabs"
+                    ],
+    "host_permissions":  [
+                             "https://www.linkedin.com/*",
+                             "https://*.linkedin.com/*",
+                             "https://linkedin.com/*",
+                             "https://www.naukri.com/*",
+                             "https://*.naukri.com/*",
+                             "https://naukri.com/*",
+                             "https://www.hirist.tech/*",
+                             "https://hirist.tech/*",
+                             "https://*.hirist.tech/*",
+                             "https://www.indeed.com/*",
+                             "https://indeed.com/*",
+                             "https://*.indeed.com/*",
+                             "https://www.indeed.co.in/*",
+                             "https://indeed.co.in/*",
+                             "https://*.indeed.co.in/*",
+                             "https://www.indeed.in/*",
+                             "https://indeed.in/*",
+                             "https://*.indeed.in/*",
+                             "https://www.adzuna.in/*",
+                             "https://adzuna.in/*",
+                             "https://*.adzuna.in/*",
+                             "https://my-portfolio-frontend-chi-five.vercel.app/*",
+                             "http://localhost:5000/*",
+                             "https://my-portfolio-backend-0ezn.onrender.com/*"
+                         ],
+    "background":  {
+                       "service_worker":  "service-worker.js",
+                       "type":  "module"
+                   },
+    "content_scripts":  [
+                            {
+                                "matches":  [
+                                                "https://linkedin.com/*",
+                                                "https://*.linkedin.com/*",
+                                                "https://naukri.com/*",
+                                                "https://*.naukri.com/*",
+                                                "https://hirist.tech/*",
+                                                "https://*.hirist.tech/*",
+                                                "https://indeed.com/*",
+                                                "https://*.indeed.com/*",
+                                                "https://indeed.co.in/*",
+                                                "https://*.indeed.co.in/*",
+                                                "https://indeed.in/*",
+                                                "https://*.indeed.in/*",
+                                                "https://adzuna.in/*",
+                                                "https://*.adzuna.in/*"
+                                            ],
+                                "js":  [
+                                           "content/bridge.js"
+                                       ],
+                                "run_at":  "document_start"
+                            }
+                        ]
+}

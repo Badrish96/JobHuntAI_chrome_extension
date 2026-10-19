@@ -1,0 +1,11 @@
+{
+  "name": "portfolio-job-playwright-runner",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "apply": "node runner.mjs"
+  },
+  "dependencies": {
+    "playwright": "^1.55.0"
+  }
+}

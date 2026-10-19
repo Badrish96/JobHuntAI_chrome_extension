@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Portfolio AI Jobs</title>
+    <style>
+      body { width: 340px; margin: 0; padding: 16px; font: 14px Arial, sans-serif; color: #173f42; }
+      h1 { margin: 0 0 12px; font-size: 18px; }
+      label { display: block; margin: 10px 0 5px; font-weight: 600; }
+      input { box-sizing: border-box; width: 100%; padding: 9px; border: 1px solid #b7c9ca; border-radius: 7px; }
+      button { width: 100%; margin-top: 14px; padding: 10px; border: 0; border-radius: 7px; background: #0ea5a4; color: white; font-weight: 700; cursor: pointer; }
+      button:disabled { opacity: .55; cursor: wait; }
+      #status { margin-top: 12px; white-space: pre-wrap; line-height: 1.4; }
+      .hint { margin-top: 8px; color: #607b7d; font-size: 12px; }
+    </style>
+  </head>
+  <body>
+    <h1>Portfolio AI Job Scanner</h1>
+    <label for="apiBase">Portfolio API URL</label>
+    <input id="apiBase" value="https://my-portfolio-backend-0ezn.onrender.com">
+    <label for="token">Portfolio login token</label>
+    <input id="token" type="password" autocomplete="off" placeholder="Paste hosted authToken once">
+    <button id="hostedToken">Use hosted portfolio token</button>
+    <button id="scan">Scan board + find profile jobs</button>
+    <button id="assist">Start Easy Apply assistant</button>
+    <button id="autofill">Autofill current application</button>
+    <button id="markApplied">I submitted this application</button>
+    <div class="hint">Use the authToken from your Vercel portfolio login with the Render API URL. The extension uses your existing job-board session and does not store your job-board password.</div>
+    <div id="status" role="status"></div>
+    <script src="popup.js"></script>
+  </body>
+</html>
