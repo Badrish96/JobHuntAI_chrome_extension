@@ -53,13 +53,31 @@ export function startEasyApplyAssistant(profile, apiBase, token) {
 
   const overlay = document.createElement("div");
   overlay.id = assistantId;
-  const dialogRoot = document.querySelector('[role="dialog"], .jobs-easy-apply-modal, .artdeco-modal');
-  const overlayParent = dialogRoot || document.body || document.documentElement;
-  overlay.style.cssText = dialogRoot
-    ? "position:absolute;z-index:2147483647!important;top:12px;right:12px;width:360px;max-height:calc(100% - 24px);overflow:auto;padding:18px;background:#173f42;color:#fff;border-radius:14px;box-shadow:0 10px 35px #0007;font:14px Arial,sans-serif;pointer-events:auto"
-    : "position:fixed;z-index:2147483647!important;right:20px;bottom:20px;width:360px;max-height:75vh;overflow:auto;padding:18px;background:#173f42;color:#fff;border-radius:14px;box-shadow:0 10px 35px #0007;font:14px Arial,sans-serif;pointer-events:auto";
-  if (dialogRoot && getComputedStyle(dialogRoot).position === "static") dialogRoot.style.position = "relative";
-  overlayParent.appendChild(overlay);
+  // Keep the assistant outside LinkedIn's dialog stacking/overflow contexts.
+  // Mounting it inside the Easy Apply dialog makes it render behind the dialog
+  // content or get clipped when LinkedIn changes the dialog layout.
+  overlay.style.cssText = [
+    "position:fixed!important",
+    "z-index:2147483647!important",
+    "top:84px!important",
+    "right:20px!important",
+    "bottom:auto!important",
+    "left:auto!important",
+    "box-sizing:border-box!important",
+    "width:360px!important",
+    "max-width:calc(100vw - 40px)!important",
+    "max-height:calc(100vh - 104px)!important",
+    "overflow:auto!important",
+    "padding:18px!important",
+    "background:#173f42!important",
+    "color:#fff!important",
+    "border-radius:14px!important",
+    "box-shadow:0 10px 35px #0007!important",
+    "font:14px Arial,sans-serif!important",
+    "pointer-events:auto!important",
+    "isolation:isolate!important",
+  ].join(";");
+  (document.body || document.documentElement).appendChild(overlay);
 
   let processTimer = null;
   const scheduleProcess = () => {
